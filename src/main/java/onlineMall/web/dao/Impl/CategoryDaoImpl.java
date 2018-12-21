@@ -3,6 +3,7 @@ package onlineMall.web.dao.Impl;
 import onlineMall.web.dao.CategoryDao;
 import onlineMall.web.dao.Dbutil;
 import onlineMall.web.pojo.Category;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;

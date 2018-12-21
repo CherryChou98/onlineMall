@@ -79,4 +79,39 @@ public class Dbutil {
         return rs;
     }
 
+    public int countImage() throws Exception{
+        String sql = "select count(*) as 'ct' from image ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
+
+    public int countItem() throws Exception{
+        String sql = "select count(*) as 'ct' from item ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
+
+    public int countCommentItem() throws Exception{
+        String sql = "select count(*) as 'ct' from comment_item ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
 }

@@ -11,6 +11,8 @@ public class ShoppingCart {
 
     private Integer number;
 
+    private String state;
+
     public Integer getShoppingCartId() {
         return shoppingCartId;
     }
@@ -50,4 +52,8 @@ public class ShoppingCart {
     public void setNumber(Integer number) {
         this.number = number;
     }
+
+    public String getState() { return state; }
+
+    public void setState(String state) { this.state = state; }
 }
