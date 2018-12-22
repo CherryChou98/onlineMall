@@ -1,6 +1,7 @@
 package onlineMall.web.dao;
 
 import onlineMall.web.pojo.Item;
+import onlineMall.web.pojo.ItemWithCategory;
 import onlineMall.web.pojo.ItemWithImage;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public interface ItemDao {
     /**
      * 查看商品信息，不含图片
      */
-    public ArrayList<Item> viewItem(int shopId);
+    public ArrayList<ItemWithCategory> viewItem(int shopId);
     /**
      * 商家查看商品信息，包含图片信息，包含审核结果，item表与image表连接，对应的实体类ItemWithImage
      */

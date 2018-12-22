@@ -2,6 +2,7 @@ package onlineMall.web.shop.controller;
 
 import onlineMall.web.dao.Impl.ItemDaoImpl;
 import onlineMall.web.pojo.Item;
+import onlineMall.web.pojo.ItemWithCategory;
 import onlineMall.web.pojo.ItemWithImage;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,9 @@ public class ItemController {
      * 查看商品信息，不包含图片，测试成功
      * */
     @RequestMapping(value = "/viewItem",  method = RequestMethod.GET)
-    public ArrayList<Item> viewItem(@RequestParam("shopId") int shopId){
-        ArrayList<Item> item = itemDaoImpl.viewItem(shopId);
-        return item;
+    public ArrayList<ItemWithCategory> viewItem(@RequestParam("shopId") int shopId){
+        ArrayList<ItemWithCategory> itemWithCategories = itemDaoImpl.viewItem(shopId);
+        return itemWithCategories;
     }
 
     /**

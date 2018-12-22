@@ -18,6 +18,8 @@ public class ItemWithImage extends Item {
 
     private String imageDescription;
 
+    private String name1;
+
     public Integer getImageId() {
         return imageId;
     }
@@ -38,4 +40,7 @@ public class ItemWithImage extends Item {
 
     public void setImageDescription(String imageDescription) { this.imageDescription = imageDescription; }
 
+    public String getName1() { return name1; }
+
+    public void setName1(String name1) { this.name1 = name1; }
 }
