@@ -3,6 +3,7 @@ package onlineMall.web.dao.Impl;
 import onlineMall.web.dao.Dbutil;
 import onlineMall.web.dao.ItemDao;
 import onlineMall.web.pojo.Item;
+import onlineMall.web.pojo.ItemWithCategory;
 import onlineMall.web.pojo.ItemWithImage;
 import org.springframework.stereotype.Repository;
 
@@ -32,22 +33,23 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public ArrayList<Item> viewItem(int shopId) {
-        ArrayList<Item> list = new ArrayList<>();
-        String sql = "SELECT ITEM_ID, CATEGORY_ID, NAME, PRICE, DESCRIPTION, SHELF_TIME, SHOP_ID, STATE FROM item WHERE item.`SHOP_ID`= ?";
+    public ArrayList<ItemWithCategory> viewItem(int shopId) {
+        ArrayList<ItemWithCategory> list = new ArrayList<>();
+        String sql = "SELECT ITEM_ID,item.CATEGORY_ID,category.NAME AS NAME1,item.NAME,PRICE,DESCRIPTION,SHELF_TIME,SHOP_ID,STATE FROM item,category WHERE item.CATEGORY_ID=category.CATEGORY_ID AND item.`SHOP_ID`=?";
         try {
             ResultSet rs = dbutil.executeQuery(sql, shopId);
             while (rs.next()){
-                Item item = new Item();
-                item.setItemId(rs.getInt("ITEM_ID"));
-                item.setCategoryId(rs.getInt("CATEGORY_ID"));
-                item.setName(rs.getString("NAME"));
-                item.setPrice(rs.getDouble("PRICE"));
-                item.setDescription(rs.getString("DESCRIPTION"));
-                item.setShelfTime(rs.getDate("SHELF_TIME"));
-                item.setShopId(rs.getInt("SHOP_ID"));
-                item.setState(rs.getString("STATE"));
-                list.add(item);
+                ItemWithCategory itemWithCategory = new ItemWithCategory();
+                itemWithCategory.setItemId(rs.getInt("ITEM_ID"));
+                itemWithCategory.setCategoryId(rs.getInt("CATEGORY_ID"));
+                itemWithCategory.setName1(rs.getString("NAME1"));
+                itemWithCategory.setName(rs.getString("NAME"));
+                itemWithCategory.setPrice(rs.getDouble("PRICE"));
+                itemWithCategory.setDescription(rs.getString("DESCRIPTION"));
+                itemWithCategory.setShelfTime(rs.getDate("SHELF_TIME"));
+                itemWithCategory.setShopId(rs.getInt("SHOP_ID"));
+                itemWithCategory.setState(rs.getString("STATE"));
+                list.add(itemWithCategory);
             }
             return list;
         } catch (Exception e) {
@@ -59,13 +61,14 @@ public class ItemDaoImpl implements ItemDao {
     @Override
     public ArrayList<ItemWithImage> viewItemMessage(int shopId) {
         ArrayList<ItemWithImage> list = new ArrayList<>();
-        String sql = "SELECT item.`ITEM_ID`, CATEGORY_ID, NAME, PRICE, DESCRIPTION, SHELF_TIME, SHOP_ID, STATE, image.`IMAGE_ID`, image.`IMAGE_URL`, image.`IMAGE_DESCRIPTION` FROM item, image WHERE item.`ITEM_ID` = image.`ITEM_ID` AND item.`SHOP_ID`= ?";
+        String sql = "SELECT item.`ITEM_ID`, item.CATEGORY_ID,category.`NAME` AS NAME1, item.NAME, PRICE, DESCRIPTION, SHELF_TIME, SHOP_ID, STATE, image.`IMAGE_ID`, image.`IMAGE_URL`, image.`IMAGE_DESCRIPTION` FROM item,category,image WHERE item.`CATEGORY_ID`=category.`CATEGORY_ID` AND item.`ITEM_ID` = image.`ITEM_ID` AND item.`SHOP_ID`= ?";
         try {
             ResultSet rs = dbutil.executeQuery(sql, shopId);
             while (rs.next()){
                 ItemWithImage itemWithImage = new ItemWithImage();
                 itemWithImage.setItemId(rs.getInt("ITEM_ID"));
                 itemWithImage.setCategoryId(rs.getInt("CATEGORY_ID"));
+                itemWithImage.setName1(rs.getString("NAME1"));
                 itemWithImage.setName(rs.getString("NAME"));
                 itemWithImage.setPrice(rs.getDouble("PRICE"));
                 itemWithImage.setDescription(rs.getString("DESCRIPTION"));
