@@ -127,4 +127,36 @@ public class ItemDaoImpl implements ItemDao {
         return flag;
     }
 
+    @Override
+    public boolean deleteItemMessage(int itemId) {
+        boolean flag = false;
+        String sql = "DELETE FROM image WHERE ITEM_Id=?";
+        String sqla = "SELECT ITEM_Id FROM image WHERE ITEM_Id=?";
+        String sql1 = "DELETE FROM offitem WHERE ITEM_Id=?";
+        String sql1a = "SELECT ITEM_Id FROM offitem WHERE ITEM_Id=?";
+        String sql2 = "DELETE FROM shopping_cart WHERE ITEM_Id=?";
+        String sql2a = "SELECT ITEM_Id FROM shopping_cart WHERE ITEM_Id=?";
+        String sql3 = "DELETE FROM item WHERE ITEM_Id=?";
+        try {
+            ResultSet rs = dbutil.executeQuery(sqla,itemId);
+            if(rs.next()){
+                dbutil.executeUpdate(sql,itemId);
+            }
+            ResultSet rs1 = dbutil.executeQuery(sql1a,itemId);
+            if(rs1.next()){
+                dbutil.executeUpdate(sql1,itemId);
+            }
+            ResultSet rs2 = dbutil.executeQuery(sql2a,itemId);
+            if(rs2.next()){
+                dbutil.executeUpdate(sql2,itemId);
+            }
+            int r = dbutil.executeUpdate(sql3,itemId);
+            if(r!=0){
+                flag = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

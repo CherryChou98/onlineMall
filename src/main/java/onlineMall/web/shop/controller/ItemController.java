@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 @Controller
 @ResponseBody
-@RequestMapping("/shop")
+@RequestMapping("/shop/item")
 public class ItemController {
     @Autowired
     private ItemDaoImpl itemDaoImpl;
@@ -71,6 +71,15 @@ public class ItemController {
     @RequestMapping(value = "/insertItem", method = RequestMethod.POST)
     public boolean insertItem(@ModelAttribute Item item){
         boolean flag = itemDaoImpl.insertItem(item);
+        return flag;
+    }
+
+    /**
+     * 删除商品信息
+     * */
+    @RequestMapping(value = "/deleteItemMessage",  method = RequestMethod.GET)
+    public boolean deleteItemMessage(@RequestParam("itemId") int itemId){
+        boolean flag = itemDaoImpl.deleteItemMessage(itemId);
         return flag;
     }
 

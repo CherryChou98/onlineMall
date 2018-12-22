@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 @Controller
 @ResponseBody
-@RequestMapping("/order")
+@RequestMapping("/shop/order")
 public class OrderController {
     @Autowired
     private OrderDaoImpl orderDaoImpl;

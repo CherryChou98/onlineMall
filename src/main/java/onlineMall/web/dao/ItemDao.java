@@ -22,7 +22,10 @@ public interface ItemDao {
      * 商家上传商品图片信息
      */
     public boolean insertImage(String imageUrl, int itemId, String imageDescription);
-
+    /**
+     * 商家删除商品信息，删除时删除image，offitem，shopping_cart表相关记录
+     */
+    public boolean deleteItemMessage(int itemId);
 
    /* int deleteByPrimaryKey(Integer itemId);
 
