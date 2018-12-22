@@ -32,6 +32,31 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
+    public ArrayList<Item> viewItem(int shopId) {
+        ArrayList<Item> list = new ArrayList<>();
+        String sql = "SELECT ITEM_ID, CATEGORY_ID, NAME, PRICE, DESCRIPTION, SHELF_TIME, SHOP_ID, STATE FROM item WHERE item.`SHOP_ID`= ?";
+        try {
+            ResultSet rs = dbutil.executeQuery(sql, shopId);
+            while (rs.next()){
+                Item item = new Item();
+                item.setItemId(rs.getInt("ITEM_ID"));
+                item.setCategoryId(rs.getInt("CATEGORY_ID"));
+                item.setName(rs.getString("NAME"));
+                item.setPrice(rs.getDouble("PRICE"));
+                item.setDescription(rs.getString("DESCRIPTION"));
+                item.setShelfTime(rs.getDate("SHELF_TIME"));
+                item.setShopId(rs.getInt("SHOP_ID"));
+                item.setState(rs.getString("STATE"));
+                list.add(item);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public ArrayList<ItemWithImage> viewItemMessage(int shopId) {
         ArrayList<ItemWithImage> list = new ArrayList<>();
         String sql = "SELECT item.`ITEM_ID`, CATEGORY_ID, NAME, PRICE, DESCRIPTION, SHELF_TIME, SHOP_ID, STATE, image.`IMAGE_ID`, image.`IMAGE_URL`, image.`IMAGE_DESCRIPTION` FROM item, image WHERE item.`ITEM_ID` = image.`ITEM_ID` AND item.`SHOP_ID`= ?";
@@ -67,7 +92,7 @@ public class ItemDaoImpl implements ItemDao {
         String description = item.getDescription();
         Date shelfTime = item.getShelfTime();
         int shopId = item.getShopId();
-        String state = item.getState();
+        String state = "0";
         boolean flag = false;
         String sql = "insert into item(ITEM_ID,CATEGORY_ID,NAME,PRICE,DESCRIPTION,SHELF_TIME,SHOP_ID,STATE) values (?,?,?,?,?,?,?,?)";
         try {

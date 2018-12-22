@@ -1,6 +1,7 @@
 package onlineMall.web.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  * @ Modified By：
  * @ Version:
  */
+@Component
 public class ViewOrder {
     private Integer itemId;
 
