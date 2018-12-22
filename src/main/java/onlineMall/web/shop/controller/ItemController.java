@@ -75,7 +75,7 @@ public class ItemController {
     }
 
     /**
-     * 删除商品信息
+     * 删除商品信息，测试成功
      * */
     @RequestMapping(value = "/deleteItemMessage",  method = RequestMethod.GET)
     public boolean deleteItemMessage(@RequestParam("itemId") int itemId){
@@ -83,4 +83,13 @@ public class ItemController {
         return flag;
     }
 
+    /**
+     * 搜索商品信息，测试成功
+     * */
+    @RequestMapping(value = "/queryItem",  method = RequestMethod.GET)
+    public ArrayList<Item> queryItem(@RequestParam("name") String name){
+        String name1 = "%"+name+"%";
+        ArrayList<Item> items = itemDaoImpl.queryItem(name1);
+        return items;
+    }
 }

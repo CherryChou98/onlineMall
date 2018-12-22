@@ -26,7 +26,10 @@ public interface ItemDao {
      * 商家删除商品信息，删除时删除image，offitem，shopping_cart表相关记录
      */
     public boolean deleteItemMessage(int itemId);
-
+    /**
+     * 商家搜索商品信息，按商品名检索，使用通配符
+     */
+    public ArrayList<Item> queryItem(String name);
    /* int deleteByPrimaryKey(Integer itemId);
 
     int insert(Item record);
