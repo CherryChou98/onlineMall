@@ -159,4 +159,29 @@ public class ItemDaoImpl implements ItemDao {
         }
         return flag;
     }
+
+    @Override
+    public ArrayList<Item> queryItem(String name) {
+        String sql = "SELECT ITEM_ID,CATEGORY_ID,NAME,PRICE,DESCRIPTION,SHELF_TIME,SHOP_ID,STATE FROM item WHERE name LIKE ?";
+        ArrayList<Item> list = new ArrayList<>();
+        try {
+            ResultSet rs = dbutil.executeQuery(sql,name);
+            while (rs.next()){
+                Item item = new Item();
+                item.setItemId(rs.getInt("ITEM_ID"));
+                item.setCategoryId(rs.getInt("CATEGORY_ID"));
+                item.setName(rs.getString("NAME"));
+                item.setPrice(rs.getDouble("PRICE"));
+                item.setDescription(rs.getString("DESCRIPTION"));
+                item.setShelfTime(rs.getDate("SHELF_TIME"));
+                item.setShopId(rs.getInt("SHOP_ID"));
+                item.setState(rs.getString("STATE"));
+                list.add(item);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
