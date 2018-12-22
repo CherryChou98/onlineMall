@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @ResponseBody
-@RequestMapping("/commentItem")
+@RequestMapping("/shop/commentItem")
 public class CommentItemController {
     @Autowired
     private CommentItemDaoImpl commentItemDaoImpl;

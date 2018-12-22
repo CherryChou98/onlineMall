@@ -23,13 +23,22 @@ import java.util.ArrayList;
  */
 @Controller
 @ResponseBody
-@RequestMapping("/shop")
+@RequestMapping("/shop/item")
 public class ItemController {
     @Autowired
     private ItemDaoImpl itemDaoImpl;
 
     /**
-     * 查看商品信息，测试成功
+     * 查看商品信息，不包含图片，测试成功
+     * */
+    @RequestMapping(value = "/viewItem",  method = RequestMethod.GET)
+    public ArrayList<Item> viewItem(@RequestParam("shopId") int shopId){
+        ArrayList<Item> item = itemDaoImpl.viewItem(shopId);
+        return item;
+    }
+
+    /**
+     * 查看商品信息，包含图片，测试成功
      * */
     @RequestMapping(value = "/viewItemMessage",  method = RequestMethod.GET)
     public ArrayList<ItemWithImage> viewItemMessage(@RequestParam("shopId") int shopId){
@@ -64,4 +73,14 @@ public class ItemController {
         boolean flag = itemDaoImpl.insertItem(item);
         return flag;
     }
+
+    /**
+     * 删除商品信息
+     * */
+    @RequestMapping(value = "/deleteItemMessage",  method = RequestMethod.GET)
+    public boolean deleteItemMessage(@RequestParam("itemId") int itemId){
+        boolean flag = itemDaoImpl.deleteItemMessage(itemId);
+        return flag;
+    }
+
 }

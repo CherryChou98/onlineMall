@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 @Controller
 @RequestMapping("/text")
-public class TextController {
+public class TextController1 {
 
     @Autowired
     private CategoryDaoImpl categoryDaoImpl;

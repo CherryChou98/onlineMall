@@ -1,5 +1,8 @@
 package onlineMall.web.pojo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Category {
     private Integer categoryId;
 

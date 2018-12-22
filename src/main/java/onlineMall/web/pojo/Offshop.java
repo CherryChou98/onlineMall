@@ -1,7 +1,9 @@
 package onlineMall.web.pojo;
 
-import java.util.Date;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
+@Component
 public class Offshop extends OffshopKey {
     private Integer adminId;
 

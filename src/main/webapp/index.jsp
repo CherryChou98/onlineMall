@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-
+<form name="textForm" action="/text/shop" method="get">
+    <input type="submit" value="提交">
+</form>
 </body>
 </html>

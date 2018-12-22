@@ -1,5 +1,7 @@
 package onlineMall.web.pojo;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @ Package: onlineMall.web.pojo
  * @ Author     ：linsola
@@ -8,6 +10,7 @@ package onlineMall.web.pojo;
  * @ Modified By：
  * @ Version:
  */
+@Component
 public class ItemWithImage extends Item {
     private Integer imageId;
 
