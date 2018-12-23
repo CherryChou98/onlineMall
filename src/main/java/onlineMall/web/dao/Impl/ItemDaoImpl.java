@@ -40,6 +40,7 @@ public class ItemDaoImpl implements ItemDao {
             ResultSet rs = dbutil.executeQuery(sql, shopId);
             while (rs.next()){
                 ItemWithCategory itemWithCategory = new ItemWithCategory();
+                String state = null;
                 itemWithCategory.setItemId(rs.getInt("ITEM_ID"));
                 itemWithCategory.setCategoryId(rs.getInt("CATEGORY_ID"));
                 itemWithCategory.setName1(rs.getString("NAME1"));
@@ -48,7 +49,12 @@ public class ItemDaoImpl implements ItemDao {
                 itemWithCategory.setDescription(rs.getString("DESCRIPTION"));
                 itemWithCategory.setShelfTime(rs.getDate("SHELF_TIME"));
                 itemWithCategory.setShopId(rs.getInt("SHOP_ID"));
-                itemWithCategory.setState(rs.getString("STATE"));
+                if("0".equals(rs.getString("STATE"))){
+                    state = "未审核通过";
+                }else {
+                    state = "审核通过";
+                }
+                itemWithCategory.setState(state);
                 list.add(itemWithCategory);
             }
             return list;
@@ -66,6 +72,7 @@ public class ItemDaoImpl implements ItemDao {
             ResultSet rs = dbutil.executeQuery(sql, shopId);
             while (rs.next()){
                 ItemWithImage itemWithImage = new ItemWithImage();
+                String state = null;
                 itemWithImage.setItemId(rs.getInt("ITEM_ID"));
                 itemWithImage.setCategoryId(rs.getInt("CATEGORY_ID"));
                 itemWithImage.setName1(rs.getString("NAME1"));
@@ -74,7 +81,12 @@ public class ItemDaoImpl implements ItemDao {
                 itemWithImage.setDescription(rs.getString("DESCRIPTION"));
                 itemWithImage.setShelfTime(rs.getDate("SHELF_TIME"));
                 itemWithImage.setShopId(rs.getInt("SHOP_ID"));
-                itemWithImage.setState(rs.getString("STATE"));
+                if("0".equals(rs.getString("STATE"))){
+                    state = "未审核通过";
+                }else {
+                    state = "审核通过";
+                }
+                itemWithImage.setState(state);
                 itemWithImage.setImageId(rs.getInt("IMAGE_ID"));
                 itemWithImage.setImageUrl(rs.getString("IMAGE_URL"));
                 itemWithImage.setImageDescription(rs.getString("IMAGE_DESCRIPTION"));
@@ -186,6 +198,7 @@ public class ItemDaoImpl implements ItemDao {
             ResultSet rs = dbutil.executeQuery(sql,name);
             while (rs.next()){
                 Item item = new Item();
+                String state = null;
                 item.setItemId(rs.getInt("ITEM_ID"));
                 item.setCategoryId(rs.getInt("CATEGORY_ID"));
                 item.setName(rs.getString("NAME"));
@@ -193,7 +206,12 @@ public class ItemDaoImpl implements ItemDao {
                 item.setDescription(rs.getString("DESCRIPTION"));
                 item.setShelfTime(rs.getDate("SHELF_TIME"));
                 item.setShopId(rs.getInt("SHOP_ID"));
-                item.setState(rs.getString("STATE"));
+                if("0".equals(rs.getString("STATE"))){
+                    state = "未审核通过";
+                }else {
+                    state = "审核通过";
+                }
+                item.setState(state);
                 list.add(item);
             }
             return list;

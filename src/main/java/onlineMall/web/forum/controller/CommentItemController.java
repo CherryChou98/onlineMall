@@ -19,25 +19,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @ResponseBody
 @RequestMapping("/commentItem")
-public class ItemCommentController {
+public class CommentItemController {
     @Autowired
     private CommentItemDaoImpl commentItemDaoImpl;
 
     /**
-     * 对商品评论进行回评，待测试
+     * 评论商品，对商品评论进行回评，待测试
      */
     @RequestMapping(value = "/itemCommentBack",  method = RequestMethod.GET)
     public boolean itemCommentBack(@RequestParam("itemId")int itemId, @RequestParam("userId")int userId, @RequestParam("content")String content, @RequestParam("commentId")int commentId){
-        boolean flag = commentItemDaoImpl.itemCommentBack(itemId, userId, content, commentId);
+        boolean flag = commentItemDaoImpl.commentItemBack(itemId, userId, content, commentId);
         return flag;
     }
 
-    /**
-     * 删除商品评论，测试成功
-     */
-    @RequestMapping(value = "/deleteItemComment",  method = RequestMethod.GET)
-    public boolean deleteItemComment(@RequestParam("commentId") int commentId){
-        boolean flag = commentItemDaoImpl.deleteItemComment(commentId);
-        return flag;
-    }
 }

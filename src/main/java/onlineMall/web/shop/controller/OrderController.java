@@ -36,7 +36,7 @@ public class OrderController {
     }
 
     /**
-     * 商家对订单进行发货，STATUS字段由1（已付款未发货）变2（已发货未收货），待测试
+     * 商家对订单进行发货，STATUS字段由1（已付款未发货）变2（已发货未收货），测试成功
      * */
     @RequestMapping(value = "/deliverItem",  method = RequestMethod.GET)
     public boolean deliverItem(@RequestParam("orderId")int orderId){
