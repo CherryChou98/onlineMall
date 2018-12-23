@@ -27,7 +27,7 @@ public class CommentItemDaoImpl implements CommentItemDao {
         }
     }
     @Override
-    public boolean itemCommentBack(int itemId,int userId,String content,int commentId) {
+    public boolean commentItemBack(int itemId,int userId,String content,int commentId) {
         boolean flag = false;
         Date date = new Date();
         try {

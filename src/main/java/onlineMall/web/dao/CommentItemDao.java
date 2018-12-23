@@ -2,9 +2,9 @@ package onlineMall.web.dao;
 
 public interface CommentItemDao {
     /**
-     * 对商品评论进行回评
+     * 评论商品，对商品评论进行回评
      */
-    public boolean itemCommentBack(int itemId,int userId,String content,int commentId);
+    public boolean commentItemBack(int itemId,int userId,String content,int commentId);
 
     /**
      * 删除商品评论

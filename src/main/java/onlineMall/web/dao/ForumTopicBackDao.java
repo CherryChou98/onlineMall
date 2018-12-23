@@ -3,7 +3,18 @@ package onlineMall.web.dao;
 import onlineMall.web.pojo.ForumTopicBack;
 
 public interface ForumTopicBackDao {
-    int deleteByPrimaryKey(Integer forumTopicBackId);
+
+    /**
+     * 查看某帖子下的所有回复
+     * */
+
+
+    /**
+     * 插入回复内容
+     * */
+
+
+  /*  int deleteByPrimaryKey(Integer forumTopicBackId);
 
     int insert(ForumTopicBack record);
 
@@ -13,5 +24,5 @@ public interface ForumTopicBackDao {
 
     int updateByPrimaryKeySelective(ForumTopicBack record);
 
-    int updateByPrimaryKey(ForumTopicBack record);
+    int updateByPrimaryKey(ForumTopicBack record);*/
 }

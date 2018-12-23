@@ -80,7 +80,7 @@ public class Dbutil {
     }
 
     public int countImage() throws Exception{
-        String sql = "select count(*) as 'ct' from image ";
+        String sql = "SELECT MAX(IMAGE_ID) AS ct FROM image ";
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
@@ -92,7 +92,7 @@ public class Dbutil {
     }
 
     public int countItem() throws Exception{
-        String sql = "select count(*) as 'ct' from item ";
+        String sql = "SELECT MAX(ITEM_ID) AS ct FROM item ";
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){
@@ -104,7 +104,7 @@ public class Dbutil {
     }
 
     public int countCommentItem() throws Exception{
-        String sql = "select count(*) as 'ct' from comment_item ";
+        String sql = "SELECT MAX(COMMENT_ID) AS ct FROM comment_item ";
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         if(rs.next()){

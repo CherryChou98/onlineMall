@@ -25,7 +25,7 @@ public class PublicCategoryController {
     private CategoryDaoImpl categoryDaoImpl;
 
     /**
-     * 查看所有类别信息，各模块复用
+     * 查看所有类别信息，测试成功，各模块复用
      * */
     @RequestMapping(value = "/category/queryAll", method = RequestMethod.GET)
     @ResponseBody

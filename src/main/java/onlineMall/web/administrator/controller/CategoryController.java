@@ -31,7 +31,7 @@ public class CategoryController {
     }
 
     /**
-     * 删除商品分类，待测试
+     * 删除商品分类，测试成功
      * */
     @RequestMapping(value = "/deleteCategory", method = RequestMethod.GET)
     public boolean deleteCategory(@RequestParam("categoryId") int categoryId){
