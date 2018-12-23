@@ -27,13 +27,30 @@ public class CommentItemDaoImpl implements CommentItemDao {
         }
     }
     @Override
-    public boolean shopCommentBack(int itemId,int userId,String content,int commentId) {
+    public boolean itemCommentBack(int itemId,int userId,String content,int commentId) {
         boolean flag = false;
         Date date = new Date();
         try {
             int ct = dbutil.countCommentItem()+1;
             String sql = "INSERT INTO comment_item(COMMENT_ID,ITEM_ID,USER_ID,CONTENT,TIME,BACK_BACK) VALUES(?,?,?,?,?,?)";
             int r = dbutil.executeUpdate(sql,ct,itemId,userId,content,date,commentId);
+            if(r!=0){
+                flag = true;
+            }else {
+                flag = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean deleteItemComment(int commentId) {
+        boolean flag = false;
+        String sql = "DELETE FROM comment_item WHERE COMMENT_ID=?";
+        try {
+            int r = dbutil.executeUpdate(sql,commentId);
             if(r!=0){
                 flag = true;
             }else {

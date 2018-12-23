@@ -1,4 +1,4 @@
-package onlineMall.web.customer.controller;
+package onlineMall.web.publicController;
 
 import onlineMall.web.dao.Impl.CategoryDaoImpl;
 import onlineMall.web.pojo.Category;
@@ -19,16 +19,18 @@ import java.util.ArrayList;
  * @ Version:
  */
 @Controller
-@RequestMapping("/text")
-public class TextController1 {
+public class PublicCategoryController {
 
     @Autowired
     private CategoryDaoImpl categoryDaoImpl;
 
-    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    /**
+     * 查看所有类别信息，各模块复用
+     * */
+    @RequestMapping(value = "/category/queryAll", method = RequestMethod.GET)
     @ResponseBody
-    public ArrayList<Category> findAllCategory(){
-        ArrayList<Category> c = categoryDaoImpl.queryAll();
-        return c;
+    public ArrayList<Category> queryAll(){
+        ArrayList<Category> categories = categoryDaoImpl.queryAll();
+        return categories;
     }
 }

@@ -31,6 +31,13 @@ public interface ItemDao {
      * 商家搜索商品信息，按商品名检索，使用通配符
      */
     public ArrayList<Item> queryItem(String name);
+
+    /**
+     * 管理员审核商品信息，STATE字段由"0"变"1"
+     */
+    public boolean auditingItem(int itemId);
+
+
    /* int deleteByPrimaryKey(Integer itemId);
 
     int insert(Item record);
