@@ -30,7 +30,7 @@ public class ForumTopicDaoImpl implements ForumTopicDao {
     }
 
     @Override
-    public int deleteByPrimaryKey(Integer forumTopicId) {
+    public int deleteForumTopic(int forumTopicId) {
         String sql = "delete from forum_topic where FORUM_TOPIC_ID=?;";
         try{
             try(PreparedStatement pstat = dbutil.getConn().prepareStatement(sql)) {
@@ -49,7 +49,7 @@ public class ForumTopicDaoImpl implements ForumTopicDao {
     }
 
     @Override
-    public int insert(ForumTopic record) {
+    public int insertForumTopic(ForumTopic record) {
         String sql = "insert into forum_topic(FORUM_TOPIC_ID,USER_ID,TITLE,CONTENT,TIME) values(?,?,?,?,?);";
         try{
             try(PreparedStatement pstat = dbutil.getConn().prepareStatement(sql)){
@@ -71,11 +71,6 @@ public class ForumTopicDaoImpl implements ForumTopicDao {
             }
             return 0;
         }
-
-    @Override
-    public int insertSelective(ForumTopic record) {
-        return 0;
-    }
 
     @Override
     public ForumTopic selectByPrimaryKey(Integer forumTopicId) {

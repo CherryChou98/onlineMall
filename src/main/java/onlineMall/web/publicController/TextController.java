@@ -1,4 +1,4 @@
-package onlineMall.web.shop.controller;
+package onlineMall.web.publicController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

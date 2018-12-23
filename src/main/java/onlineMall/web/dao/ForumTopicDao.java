@@ -3,11 +3,20 @@ package onlineMall.web.dao;
 import onlineMall.web.pojo.ForumTopic;
 
 public interface ForumTopicDao {
-    int deleteByPrimaryKey(Integer forumTopicId);
 
-    int insert(ForumTopic record);
+    /**
+     * 删除帖子
+     * */
+    int deleteForumTopic(int forumTopicId);
 
-    int insertSelective(ForumTopic record);
+    /**
+     * 插入帖子
+     * */
+    int insertForumTopic(ForumTopic forumTopic);
+
+    /**
+     * 搜索帖子，根据内容查询，模糊匹配
+     * */
 
     ForumTopic selectByPrimaryKey(Integer forumTopicId);
 

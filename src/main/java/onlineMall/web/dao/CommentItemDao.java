@@ -1,12 +1,15 @@
 package onlineMall.web.dao;
 
-import onlineMall.web.pojo.CommentItem;
-
 public interface CommentItemDao {
     /**
-     * 商家对用户评论进行回评
+     * 对商品评论进行回评
      */
-    public boolean shopCommentBack(int itemId,int userId,String content,int commentId);
+    public boolean itemCommentBack(int itemId,int userId,String content,int commentId);
+
+    /**
+     * 删除商品评论
+     */
+    public boolean deleteItemComment(int commentId);
 
     /*int deleteByPrimaryKey(Integer commentId);
 

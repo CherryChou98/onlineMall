@@ -115,17 +115,32 @@ public class ItemDaoImpl implements ItemDao {
     @Override
     public boolean insertImage(String imageUrl, int itemId, String imageDescription) {
         boolean flag = false;
-        try {
-            int imageId = dbutil.countImage()+1;
-            String sql = "insert into image(IMAGE_ID,IMAGE_URL,ITEM_ID,IMAGE_DESCRIPTION) values (?,?,?,?)";
-            int r = dbutil.executeUpdate(sql,imageId,imageUrl,itemId,imageDescription);
-            if(r!=0){
-                flag = true;
-            }else {
-                flag = false;
+        String sql = "insert into image(IMAGE_ID,IMAGE_URL,ITEM_ID,IMAGE_DESCRIPTION) values (?,?,?,?)";
+        if(itemId==0){
+            try {
+                int ct = dbutil.countItem();
+                int imageId = dbutil.countImage()+1;
+                int r = dbutil.executeUpdate(sql,imageId,imageUrl,ct,imageDescription);
+                if(r!=0){
+                    flag = true;
+                }else {
+                    flag = false;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        }else {
+            try {
+                int imageId = dbutil.countImage()+1;
+                int r = dbutil.executeUpdate(sql,imageId,imageUrl,itemId,imageDescription);
+                if(r!=0){
+                    flag = true;
+                }else {
+                    flag = false;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return flag;
     }
@@ -186,5 +201,20 @@ public class ItemDaoImpl implements ItemDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean auditingItem(int itemId) {
+        boolean flag = false;
+        String sql = "UPDATE item SET STATE=\"1\" WHERE ITEM_ID=?";
+        try {
+            int r = dbutil.executeUpdate(sql,itemId);
+            if(r!=0){
+                flag = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 }

@@ -30,24 +30,6 @@ public class ItemController {
     private ItemDaoImpl itemDaoImpl;
 
     /**
-     * 查看商品信息，不包含图片，测试成功
-     * */
-    @RequestMapping(value = "/viewItem",  method = RequestMethod.GET)
-    public ArrayList<ItemWithCategory> viewItem(@RequestParam("shopId") int shopId){
-        ArrayList<ItemWithCategory> itemWithCategories = itemDaoImpl.viewItem(shopId);
-        return itemWithCategories;
-    }
-
-    /**
-     * 查看商品信息，包含图片，测试成功
-     * */
-    @RequestMapping(value = "/viewItemMessage",  method = RequestMethod.GET)
-    public ArrayList<ItemWithImage> viewItemMessage(@RequestParam("shopId") int shopId){
-        ArrayList<ItemWithImage> itemWithImages = itemDaoImpl.viewItemMessage(shopId);
-        return itemWithImages;
-    }
-
-    /**
      * 上传图片，待测试，插入到image表，仅支持单张上传
      * */
     @RequestMapping(value = "/insertItemImage", method = RequestMethod.POST,produces="application/json;charset=utf-8")
@@ -56,6 +38,7 @@ public class ItemController {
             FileUtils.writeByteArrayToFile(new File("F:/Java Project/workspace/onlineMall/src/main/webapp/static/image" + file.getOriginalFilename()), file.getBytes());
             String path1 = file.getOriginalFilename();
             String imageUrl = "<img src=\"../image/"+path1+"\">";
+            //insertImage可以区分itemId为零时/itemId非零时
             if(itemDaoImpl.insertImage(imageUrl,itemId,imageDescription)){
                 return true;
             }
@@ -75,22 +58,4 @@ public class ItemController {
         return flag;
     }
 
-    /**
-     * 删除商品信息，测试成功
-     * */
-    @RequestMapping(value = "/deleteItemMessage",  method = RequestMethod.GET)
-    public boolean deleteItemMessage(@RequestParam("itemId") int itemId){
-        boolean flag = itemDaoImpl.deleteItemMessage(itemId);
-        return flag;
-    }
-
-    /**
-     * 搜索商品信息，测试成功
-     * */
-    @RequestMapping(value = "/queryItem",  method = RequestMethod.GET)
-    public ArrayList<Item> queryItem(@RequestParam("name") String name){
-        String name1 = "%"+name+"%";
-        ArrayList<Item> items = itemDaoImpl.queryItem(name1);
-        return items;
-    }
 }
