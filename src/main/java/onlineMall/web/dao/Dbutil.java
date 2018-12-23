@@ -79,6 +79,18 @@ public class Dbutil {
         return rs;
     }
 
+    public int countUser() throws Exception{
+        String sql = "SELECT MAX(USER_ID) AS ct FROM user ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
+
     public int countImage() throws Exception{
         String sql = "SELECT MAX(IMAGE_ID) AS ct FROM image ";
         PreparedStatement pst = conn.prepareStatement(sql);
