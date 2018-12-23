@@ -18,7 +18,6 @@ import java.util.ArrayList;
  */
 @Repository
 public class UserDaoImpl implements UserDao {
-
     private Dbutil dbutil;
 
     public UserDaoImpl(Dbutil dbutil){

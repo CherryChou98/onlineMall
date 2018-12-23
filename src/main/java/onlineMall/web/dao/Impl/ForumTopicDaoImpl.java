@@ -36,6 +36,7 @@ public class ForumTopicDaoImpl implements ForumTopicDao {
             try(PreparedStatement pstat = dbutil.getConn().prepareStatement(sql)) {
                 pstat.setInt(1,forumTopicId);
                 int i = pstat.executeUpdate();
+
                 if(i>0){
                     System.out.println("删除成功");
                     return i;

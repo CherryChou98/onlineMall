@@ -22,6 +22,7 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
     @Autowired
     private UserDaoImpl userDao;
     //用户登录

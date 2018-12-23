@@ -18,6 +18,7 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("/forumtopic")
 public class ForumTopicController {
+
     @Autowired
     private ForumTopicDaoImpl forumTopicDao;
 

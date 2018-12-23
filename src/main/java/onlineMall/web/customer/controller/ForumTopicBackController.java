@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/forumtopicback")
 public class ForumTopicBackController {
+
     @Autowired
     private ForumTopicBackDaoImpl forumTopicBackDao;
 

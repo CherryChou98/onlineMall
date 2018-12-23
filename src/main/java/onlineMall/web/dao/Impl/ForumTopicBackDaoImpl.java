@@ -33,6 +33,7 @@ public class ForumTopicBackDaoImpl implements ForumTopicBackDao {
         try{
             try(PreparedStatement pstat = dbutil.getConn().prepareStatement(sql)){
                 pstat.setInt(1,forumTopicBackId);
+
                 int i = pstat.executeUpdate();
 
                 if(i>0){
