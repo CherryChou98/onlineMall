@@ -4,7 +4,24 @@ import onlineMall.web.pojo.User;
 import onlineMall.web.pojo.UserKey;
 
 public interface UserDao {
-    int deleteByPrimaryKey(UserKey key);
+
+    /**
+     * 用户登录
+     * */
+    public User userLogin(String userName, String password);
+
+    /**
+     * 管理员登录
+     * */
+    public boolean adminLogin(String userName, String password);
+
+    /**
+     * 用户注册
+     * */
+    public boolean userRegister(User user);
+
+
+    /*int deleteByPrimaryKey(UserKey key);
 
     int insert(User record);
 
@@ -14,5 +31,5 @@ public interface UserDao {
 
     int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(User record);*/
 }

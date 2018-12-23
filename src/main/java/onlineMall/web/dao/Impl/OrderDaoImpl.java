@@ -41,6 +41,7 @@ public class OrderDaoImpl implements OrderDao {
             ResultSet rs = dbutil.executeQuery(sql,shopId);
             while (rs.next()){
                 ViewOrder viewOrder = new ViewOrder();
+                String status = null;
                 viewOrder.setItemId(rs.getInt("ITEM_ID"));
                 viewOrder.setOrderId(rs.getInt("ORDER_ID"));
                 viewOrder.setItemName(rs.getString("ITEM_NAME"));
@@ -51,7 +52,19 @@ public class OrderDaoImpl implements OrderDao {
                 viewOrder.setReceiver(rs.getString("RECEIVER"));
                 viewOrder.setPhone(rs.getString("PHONE"));
                 viewOrder.setAddress(rs.getString("ADDRESS"));
-                viewOrder.setStatus(rs.getString("STATUS"));
+                String status1 = rs.getString("STATUS");
+                if("0".equals(status1)){
+                    status = "未付款";
+                }else if("1".equals(status1)){
+                    status = "已付款未发货";
+                }else if("2".equals(status1)){
+                    status = "已发货未收货";
+                }else if("3".equals(status1)){
+                    status = "已收货未评价";
+                }else if("4".equals(status1)){
+                    status = "已收货已评价";
+                }
+                viewOrder.setStatus(status);
                 viewOrder.setUserId(rs.getInt("USER_ID"));
                 viewOrder.setUserName(rs.getString("USER_NAME"));
                 list.add(viewOrder);
