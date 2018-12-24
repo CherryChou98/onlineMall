@@ -14,6 +14,7 @@ public interface ItemDao {
     /**
      * 商家查看商品信息，传入shopId，包含图片信息，类别信息，审核结果，
      * category表与item表与image表连接，对应的实体类ItemWithImage
+     * 待改动
      */
     public ArrayList<ItemWithImage> viewItemMessage(int shopId);
     /**

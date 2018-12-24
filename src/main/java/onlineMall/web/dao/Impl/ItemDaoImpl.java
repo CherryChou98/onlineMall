@@ -87,9 +87,9 @@ public class ItemDaoImpl implements ItemDao {
                     state = "审核通过";
                 }
                 itemWithImage.setState(state);
-                itemWithImage.setImageId(rs.getInt("IMAGE_ID"));
+               /* itemWithImage.setImageId(rs.getInt("IMAGE_ID"));
                 itemWithImage.setImageUrl(rs.getString("IMAGE_URL"));
-                itemWithImage.setImageDescription(rs.getString("IMAGE_DESCRIPTION"));
+                itemWithImage.setImageDescription(rs.getString("IMAGE_DESCRIPTION"));*/
                 list.add(itemWithImage);
             }
             return list;
@@ -102,12 +102,22 @@ public class ItemDaoImpl implements ItemDao {
     @Override
     public ArrayList<ItemWithImage> viewItemMessageByCategory(int categoryId) {
         ArrayList<ItemWithImage> list = new ArrayList<>();
-        String sql = "SELECT item.`ITEM_ID`, item.CATEGORY_ID,category.`NAME` AS NAME1, item.NAME, PRICE, DESCRIPTION, SHELF_TIME, SHOP_ID, STATE, image.`IMAGE_ID`, image.`IMAGE_URL`, image.`IMAGE_DESCRIPTION` FROM item,category,image WHERE item.`CATEGORY_ID`=category.`CATEGORY_ID` AND item.`ITEM_ID` = image.`ITEM_ID` AND category.`CATEGORY_ID`=?";
+        String sql = "SELECT item.`ITEM_ID`, item.CATEGORY_ID,category.`NAME` AS NAME1, item.NAME, PRICE, DESCRIPTION, SHELF_TIME, SHOP_ID, STATE FROM item,category WHERE item.`CATEGORY_ID`=category.`CATEGORY_ID` AND category.`CATEGORY_ID`=?";
         try {
-            ResultSet rs = dbutil.executeQuery(sql, categoryId);
+            ResultSet rs = dbutil.executeQuery(sql,categoryId);
             while (rs.next()){
-                ItemWithImage itemWithImage = new ItemWithImage();
                 String state = null;
+                ItemWithImage itemWithImage = new ItemWithImage();
+                int itemId = rs.getInt("ITEM_ID");
+                String sql1 = "SELECT IMAGE_ID,IMAGE_URL,IMAGE_DESCRIPTION FROM image WHERE ITEM_ID=?";
+                ResultSet rs1 = dbutil.executeQuery(sql1,itemId);
+                int i = 0;
+                while (rs1.next()){
+                    itemWithImage.setImageIds(rs1.getInt("IMAGE_ID"));
+                    itemWithImage.setImageUrls(rs1.getString("IMAGE_URL"));
+                    itemWithImage.setImageDescriptions(rs1.getString("IMAGE_DESCRIPTION"));
+                    i++;
+                }
                 itemWithImage.setItemId(rs.getInt("ITEM_ID"));
                 itemWithImage.setCategoryId(rs.getInt("CATEGORY_ID"));
                 itemWithImage.setName1(rs.getString("NAME1"));
@@ -122,9 +132,6 @@ public class ItemDaoImpl implements ItemDao {
                     state = "审核通过";
                 }
                 itemWithImage.setState(state);
-                itemWithImage.setImageId(rs.getInt("IMAGE_ID"));
-                itemWithImage.setImageUrl(rs.getString("IMAGE_URL"));
-                itemWithImage.setImageDescription(rs.getString("IMAGE_DESCRIPTION"));
                 list.add(itemWithImage);
             }
             return list;
