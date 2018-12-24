@@ -12,9 +12,10 @@ public interface ItemDao {
      */
     public ArrayList<ItemWithCategory> viewItem(int shopId);
     /**
-     * 商家查看商品信息，包含图片信息，包含审核结果，item表与image表连接，对应的实体类ItemWithImage
+     * 商家查看商品信息，传入shopId，包含图片信息，包含审核结果，item表与image表连接，对应的实体类ItemWithImage
      */
     public ArrayList<ItemWithImage> viewItemMessage(int shopId);
+    
     /**
      * 商家上传商品信息
      */

@@ -56,26 +56,35 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean adminLogin(String userName, String password) {
-        boolean flag = false;
+    public User administratorLogin(String userName, String password) {
+        User user = new User();
         String sql = "SELECT USER_ID,USER_NAME,PASSWORD,NAME,EMAIL,PHONE,BIRTHDAY,SEX,TYPE FROM USER WHERE USER_NAME=? AND PASSWORD=?";
         try {
             ResultSet rs = dbutil.executeQuery(sql,userName,password);
             while (rs.next()){
                 if("1".equals(rs.getString("TYPE"))){
-                    flag = true;
+                    user.setUserId(rs.getInt("USER_ID"));
+                    user.setUserName(rs.getString("USER_NAME"));
+                    user.setPassword(rs.getString("PASSWORD"));
+                    user.setName(rs.getString("NAME"));
+                    user.setEmail(rs.getString("EMAIL"));
+                    user.setPhone(rs.getString("PHONE"));
+                    user.setBirthday(rs.getDate("BIRTHDAY"));
+                    user.setSex(rs.getString("SEX"));
+                    user.setType(rs.getString("TYPE"));
+                    return user;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return flag;
+        return null;
     }
 
     @Override
     public boolean userRegister(User user) {
         boolean flag = false;
-        String sql = "INSERT INTO USER (USER_ID,USER_NAME,_PASSWORD,NAME,EMAIL,PHONE,BIRTHDAY,SEX,TYPE) VALUES(?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO USER (USER_ID,USER_NAME,PASSWORD,NAME,EMAIL,PHONE,BIRTHDAY,SEX,TYPE) VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             int userId = dbutil.countUser()+1;
             int r = dbutil.executeUpdate(sql,userId,user.getUserName(),user.getPassword(),user.getName(),user.getEmail(),user.getPhone(),user.getBirthday(),user.getSex(),user.getType());
@@ -89,4 +98,5 @@ public class UserDaoImpl implements UserDao {
         }
         return flag;
     }
+
 }

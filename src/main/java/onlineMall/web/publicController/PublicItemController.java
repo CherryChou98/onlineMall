@@ -45,6 +45,8 @@ public class PublicItemController {
         return itemWithImages;
     }
 
+
+
     /**
      * 搜索商品信息，测试成功，各模块复用
      * */
