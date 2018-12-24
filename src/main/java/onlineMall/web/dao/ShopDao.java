@@ -4,7 +4,17 @@ import onlineMall.web.pojo.Shop;
 import onlineMall.web.pojo.ShopKey;
 
 public interface ShopDao {
-    int deleteByPrimaryKey(ShopKey key);
+
+    /**
+     * 商家登录
+     * */
+    public Shop shopLogin(String shopName, String password);
+
+    /**
+     * 商家注册
+     * */
+    public boolean shopRegister(Shop shop);
+   /* int deleteByPrimaryKey(ShopKey key);
 
     int insert(Shop record);
 
@@ -14,5 +24,5 @@ public interface ShopDao {
 
     int updateByPrimaryKeySelective(Shop record);
 
-    int updateByPrimaryKey(Shop record);
+    int updateByPrimaryKey(Shop record);*/
 }

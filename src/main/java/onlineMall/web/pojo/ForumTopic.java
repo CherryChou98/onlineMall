@@ -1,7 +1,10 @@
 package onlineMall.web.pojo;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
+@Component
 public class ForumTopic {
     private Integer forumTopicId;
 
@@ -9,6 +12,7 @@ public class ForumTopic {
 
     private String title;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date time;
 
     private String content;

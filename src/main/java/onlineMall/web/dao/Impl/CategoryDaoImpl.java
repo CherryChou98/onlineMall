@@ -51,32 +51,38 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public int deleteByPrimaryKey(Integer categoryId) {
-        return 0;
+    public boolean insertCategory(Category category) {
+        int categoryId = category.getCategoryId();
+        String name = category.getName();
+        boolean flag = false;
+        String sql = "INSERT INTO category(CATEGORY_ID,NAME) VALUES(?,?)";
+        try {
+            int r = dbutil.executeUpdate(sql,categoryId,name);
+            if(r!=0){
+                flag = true;
+            }else {
+                flag = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 
     @Override
-    public int insert(Category record) {
-        return 0;
-    }
-
-    @Override
-    public int insertSelective(Category record) {
-        return 0;
-    }
-
-    @Override
-    public Category selectByPrimaryKey(Integer categoryId) {
-        return null;
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(Category record) {
-        return 0;
-    }
-
-    @Override
-    public int updateByPrimaryKey(Category record) {
-        return 0;
+    public boolean deleteCategory(int categoryId) {
+        boolean flag = false;
+        String sql = "DELETE FROM category WHERE CATEGORY_ID=?";
+        try {
+            int r = dbutil.executeUpdate(sql,categoryId);
+            if(r!=0){
+                flag = true;
+            }else {
+                flag = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 }

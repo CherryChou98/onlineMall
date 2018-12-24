@@ -79,4 +79,75 @@ public class Dbutil {
         return rs;
     }
 
+    public int countUser() throws Exception{
+        String sql = "SELECT MAX(USER_ID) AS ct FROM user ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
+
+    public int countShop() throws Exception{
+        String sql = "SELECT MAX(SHOP_ID) AS ct FROM shop ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
+
+    public int countImage() throws Exception{
+        String sql = "SELECT MAX(IMAGE_ID) AS ct FROM image ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
+
+    public int countItem() throws Exception{
+        String sql = "SELECT MAX(ITEM_ID) AS ct FROM item ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
+
+    public int countCommentItem() throws Exception{
+        String sql = "SELECT MAX(COMMENT_ID) AS ct FROM comment_item ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
+
+    public int countOrder() throws Exception{
+        String sql = "SELECT MAX(ORDER_ID) AS ct FROM orders ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
 }

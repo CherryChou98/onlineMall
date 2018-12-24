@@ -1,5 +1,8 @@
 package onlineMall.web.pojo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Image {
     private Integer imageId;
 
@@ -7,7 +10,7 @@ public class Image {
 
     private Integer itemId;
 
-    private String description;
+    private String imageDescription;
 
     public Integer getImageId() {
         return imageId;
@@ -33,11 +36,11 @@ public class Image {
         this.itemId = itemId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImageDescription() {
+        return imageDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+    public void setImageDescription(String imageDescription) {
+        imageDescription = imageDescription;
     }
 }

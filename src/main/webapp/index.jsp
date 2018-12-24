@@ -11,6 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-
+<form name="textForm" action="/login/user" method="post">
+    <input type="text" name="userName">
+    <input type="text" name="password">
+    <input type="submit" value="提交">
+</form>
 </body>
 </html>
