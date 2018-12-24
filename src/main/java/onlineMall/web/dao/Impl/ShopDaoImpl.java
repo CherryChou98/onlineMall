@@ -31,7 +31,7 @@ public class ShopDaoImpl implements ShopDao {
     @Override
     public Shop shopLogin(String shopName, String password) {
         Shop shop = new Shop();
-        String sql = "SELECT SHOP_ID,SHOP_NAME,PASSWORD,EMAIL,PHONE,OWNER_NAME FROM shop WHERE USER_NAME=? AND PASSWORD=?";
+        String sql = "SELECT SHOP_ID,SHOP_NAME,PASSWORD,EMAIL,PHONE,OWNER_NAME FROM shop WHERE SHOP_NAME=? AND PASSWORD=?";
         try {
             ResultSet rs = dbutil.executeQuery(sql,shopName,password);
             while (rs.next()){

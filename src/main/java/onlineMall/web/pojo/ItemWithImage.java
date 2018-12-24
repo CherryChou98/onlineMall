@@ -18,6 +18,7 @@ public class ItemWithImage extends Item {
 
     private String imageDescription;
 
+    //存放category表的name字段
     private String name1;
 
     public Integer getImageId() {

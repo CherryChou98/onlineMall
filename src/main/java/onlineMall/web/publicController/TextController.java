@@ -19,4 +19,9 @@ public class TextController {
     public String textShop(){
         return "shop";
     }
+
+    @RequestMapping(value = "/administrator", method = RequestMethod.GET)
+    public String textAdmin(){
+        return "administrator";
+    }
 }

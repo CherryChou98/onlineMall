@@ -3,7 +3,8 @@ package onlineMall.web.dao;
 import onlineMall.web.pojo.Image;
 
 public interface ImageDao {
-    int deleteByPrimaryKey(Integer imageId);
+
+    /*int deleteByPrimaryKey(Integer imageId);
 
     int insert(Image record);
 
@@ -13,5 +14,5 @@ public interface ImageDao {
 
     int updateByPrimaryKeySelective(Image record);
 
-    int updateByPrimaryKey(Image record);
+    int updateByPrimaryKey(Image record);*/
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
@@ -80,7 +81,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         //从session中将user删除
         session.removeAttribute("user");
-        redirectPage = "/userLogin.jsp";
+        redirectPage = "/index.jsp";
         request.getRequestDispatcher(redirectPage).forward(request, response);
     }
 
@@ -222,4 +223,17 @@ public class LoginController {
         redirectPage = "/shopLogin.jsp";
         request.getRequestDispatcher(redirectPage).forward(request, response);
     }
+
+    /**
+     * 商家，管理员跳转到主页
+     * */
+    @RequestMapping(value = "/redirectIndex", method = RequestMethod.GET)
+    @ResponseBody
+    public void redirectIndex(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        //跳转
+        redirectPage = "/index.jsp";
+        response.sendRedirect(redirectPage);
+        /*request.getRequestDispatcher(redirectPage).forward(request, response);*/
+    }
+
 }
