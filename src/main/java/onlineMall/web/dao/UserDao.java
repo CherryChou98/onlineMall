@@ -13,7 +13,7 @@ public interface UserDao {
     /**
      * 管理员登录
      * */
-    public boolean adminLogin(String userName, String password);
+    public User administratorLogin(String userName, String password);
 
     /**
      * 用户注册
