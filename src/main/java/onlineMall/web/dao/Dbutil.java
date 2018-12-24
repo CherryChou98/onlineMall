@@ -138,4 +138,16 @@ public class Dbutil {
             return 0;
         }
     }
+
+    public int countOrder() throws Exception{
+        String sql = "SELECT MAX(ORDER_ID) AS ct FROM orders ";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            int r = rs.getInt("ct");
+            return r;
+        }else{
+            return 0;
+        }
+    }
 }

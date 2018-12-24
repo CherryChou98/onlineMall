@@ -1,4 +1,4 @@
-package onlineMall.web.forum.controller;
+package onlineMall.web.forumComment.controller;
 
 import onlineMall.web.dao.Impl.ForumTopicDaoImpl;
 import onlineMall.web.pojo.ForumTopic;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 /**
- * @ Package: onlineMall.web.forum.controller
+ * @ Package: onlineMall.web.forumComment.controller
  * @ Author     ：linsola
  * @ Date       ：Created in 17:20 2018/12/23
  * @ Description：

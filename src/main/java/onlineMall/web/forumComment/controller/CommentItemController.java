@@ -1,4 +1,4 @@
-package onlineMall.web.forum.controller;
+package onlineMall.web.forumComment.controller;
 
 import onlineMall.web.dao.Impl.CommentItemDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @ Package: onlineMall.web.forum.controller
+ * @ Package: onlineMall.web.forumComment.controller
  * @ Author     ：linsola
  * @ Date       ：Created in 16:05 2018/12/23
  * @ Description：

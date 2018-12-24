@@ -87,9 +87,51 @@ public class ItemDaoImpl implements ItemDao {
                     state = "审核通过";
                 }
                 itemWithImage.setState(state);
-                itemWithImage.setImageId(rs.getInt("IMAGE_ID"));
+               /* itemWithImage.setImageId(rs.getInt("IMAGE_ID"));
                 itemWithImage.setImageUrl(rs.getString("IMAGE_URL"));
-                itemWithImage.setImageDescription(rs.getString("IMAGE_DESCRIPTION"));
+                itemWithImage.setImageDescription(rs.getString("IMAGE_DESCRIPTION"));*/
+                list.add(itemWithImage);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<ItemWithImage> viewItemMessageByCategory(int categoryId) {
+        ArrayList<ItemWithImage> list = new ArrayList<>();
+        String sql = "SELECT item.`ITEM_ID`, item.CATEGORY_ID,category.`NAME` AS NAME1, item.NAME, PRICE, DESCRIPTION, SHELF_TIME, SHOP_ID, STATE FROM item,category WHERE item.`CATEGORY_ID`=category.`CATEGORY_ID` AND category.`CATEGORY_ID`=?";
+        try {
+            ResultSet rs = dbutil.executeQuery(sql,categoryId);
+            while (rs.next()){
+                String state = null;
+                ItemWithImage itemWithImage = new ItemWithImage();
+                int itemId = rs.getInt("ITEM_ID");
+                String sql1 = "SELECT IMAGE_ID,IMAGE_URL,IMAGE_DESCRIPTION FROM image WHERE ITEM_ID=?";
+                ResultSet rs1 = dbutil.executeQuery(sql1,itemId);
+                int i = 0;
+                while (rs1.next()){
+                    itemWithImage.setImageIds(rs1.getInt("IMAGE_ID"));
+                    itemWithImage.setImageUrls(rs1.getString("IMAGE_URL"));
+                    itemWithImage.setImageDescriptions(rs1.getString("IMAGE_DESCRIPTION"));
+                    i++;
+                }
+                itemWithImage.setItemId(rs.getInt("ITEM_ID"));
+                itemWithImage.setCategoryId(rs.getInt("CATEGORY_ID"));
+                itemWithImage.setName1(rs.getString("NAME1"));
+                itemWithImage.setName(rs.getString("NAME"));
+                itemWithImage.setPrice(rs.getDouble("PRICE"));
+                itemWithImage.setDescription(rs.getString("DESCRIPTION"));
+                itemWithImage.setShelfTime(rs.getDate("SHELF_TIME"));
+                itemWithImage.setShopId(rs.getInt("SHOP_ID"));
+                if("0".equals(rs.getString("STATE"))){
+                    state = "未审核通过";
+                }else {
+                    state = "审核通过";
+                }
+                itemWithImage.setState(state);
                 list.add(itemWithImage);
             }
             return list;
@@ -164,8 +206,6 @@ public class ItemDaoImpl implements ItemDao {
         String sqla = "SELECT ITEM_Id FROM image WHERE ITEM_Id=?";
         String sql1 = "DELETE FROM offitem WHERE ITEM_Id=?";
         String sql1a = "SELECT ITEM_Id FROM offitem WHERE ITEM_Id=?";
-        String sql2 = "DELETE FROM shopping_cart WHERE ITEM_Id=?";
-        String sql2a = "SELECT ITEM_Id FROM shopping_cart WHERE ITEM_Id=?";
         String sql3 = "DELETE FROM item WHERE ITEM_Id=?";
         try {
             ResultSet rs = dbutil.executeQuery(sqla,itemId);
@@ -175,10 +215,6 @@ public class ItemDaoImpl implements ItemDao {
             ResultSet rs1 = dbutil.executeQuery(sql1a,itemId);
             if(rs1.next()){
                 dbutil.executeUpdate(sql1,itemId);
-            }
-            ResultSet rs2 = dbutil.executeQuery(sql2a,itemId);
-            if(rs2.next()){
-                dbutil.executeUpdate(sql2,itemId);
             }
             int r = dbutil.executeUpdate(sql3,itemId);
             if(r!=0){

@@ -1,6 +1,7 @@
 package onlineMall.web.shop.controller;
 
 import onlineMall.web.dao.Impl.OrderDaoImpl;
+import onlineMall.web.pojo.Order;
 import onlineMall.web.pojo.ViewOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 @Controller
 @ResponseBody
 @RequestMapping("/shop/order")
-public class OrderController {
+public class ShopOrderController {
     @Autowired
     private OrderDaoImpl orderDaoImpl;
 
@@ -30,8 +31,8 @@ public class OrderController {
      * 查看订单信息，测试成功
      * */
     @RequestMapping(value = "/viewOrder",  method = RequestMethod.GET)
-    public ArrayList<ViewOrder> viewOrder(@RequestParam("shopId")int shopId){
-        ArrayList<ViewOrder> viewOrders = orderDaoImpl.viewOrder(shopId);
+    public ArrayList<ViewOrder> shopViewOrder(@RequestParam("shopId")int shopId){
+        ArrayList<ViewOrder> viewOrders = orderDaoImpl.shopViewOrder(shopId);
         return viewOrders;
     }
 
@@ -42,5 +43,14 @@ public class OrderController {
     public boolean deliverItem(@RequestParam("orderId")int orderId){
         boolean flag = orderDaoImpl.deliverItem(orderId);
         return flag;
+    }
+
+    /**
+     * 商家搜索订单，传入订单id
+     * */
+    @RequestMapping(value = "/shopQueryOrder",  method = RequestMethod.GET)
+    public ViewOrder shopQueryOrder(@RequestParam("orderId") int orderId){
+        ViewOrder viewOrder = orderDaoImpl.shopQueryOrder(orderId);
+        return viewOrder;
     }
 }

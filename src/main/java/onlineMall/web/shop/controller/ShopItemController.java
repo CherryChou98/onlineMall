@@ -25,7 +25,7 @@ import java.util.ArrayList;
 @Controller
 @ResponseBody
 @RequestMapping("/shop/item")
-public class ItemController {
+public class ShopItemController {
     @Autowired
     private ItemDaoImpl itemDaoImpl;
 

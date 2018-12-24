@@ -2,6 +2,8 @@ package onlineMall.web.pojo;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 /**
  * @ Package: onlineMall.web.pojo
  * @ Author     ：linsola
@@ -12,35 +14,45 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ItemWithImage extends Item {
-    private Integer imageId;
 
-    private String imageUrl;
+    private ArrayList<Integer> imageIds = new ArrayList<>();
 
-    private String imageDescription;
+    private ArrayList<String> imageUrls = new ArrayList<>();
 
+    private ArrayList<String> imageDescriptions = new ArrayList<>();
+
+    //存放category表的name字段
     private String name1;
 
-    public Integer getImageId() {
-        return imageId;
+    public ArrayList<Integer> getImageIds() {
+        return imageIds;
     }
 
-    public void setImageId(Integer imageId) {
-        this.imageId = imageId;
+    public void setImageIds(Integer imageId) {
+        this.imageIds.add(imageId);
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public ArrayList<String> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
+    public void setImageUrls(String imageUrl) {
+        this.imageUrls.add(imageUrl);
     }
 
-    public String getImageDescription() { return imageDescription; }
+    public ArrayList<String> getImageDescriptions() {
+        return imageDescriptions;
+    }
 
-    public void setImageDescription(String imageDescription) { this.imageDescription = imageDescription; }
+    public void setImageDescriptions(String imageDescription) {
+        this.imageDescriptions.add(imageDescription);
+    }
 
-    public String getName1() { return name1; }
+    public String getName1() {
+        return name1;
+    }
 
-    public void setName1(String name1) { this.name1 = name1; }
+    public void setName1(String name1) {
+        this.name1 = name1;
+    }
 }

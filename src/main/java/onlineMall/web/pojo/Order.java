@@ -9,6 +9,8 @@ public class Order {
 
     private Date time;
 
+    private Integer number;
+
     private Double price;
 
     private String receiver;
@@ -20,6 +22,8 @@ public class Order {
     private String status;
 
     private Integer userId;
+
+    private Integer itemId;
 
     public Integer getOrderId() {
         return orderId;
@@ -36,6 +40,10 @@ public class Order {
     public void setTime(Date time) {
         this.time = time;
     }
+
+    public Integer getNumber() { return number; }
+
+    public void setNumber(Integer number) { this.number = number; }
 
     public Double getPrice() {
         return price;
@@ -84,4 +92,8 @@ public class Order {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+    public Integer getItemId() { return itemId; }
+
+    public void setItemId(Integer itemId) { this.itemId = itemId; }
 }

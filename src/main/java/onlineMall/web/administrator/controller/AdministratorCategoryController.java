@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @ResponseBody
 @RequestMapping("/administrator/category")
-public class CategoryController {
+public class AdministratorCategoryController {
     @Autowired
     private CategoryDaoImpl categoryDaoImpl;
 

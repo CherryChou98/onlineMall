@@ -37,7 +37,7 @@ public class PublicItemController {
     }
 
     /**
-     * 查看商品信息，包含图片，测试成功，各模块复用
+     * 商家查看商品信息，传入shopId，包含图片，测试成功，各模块复用
      * */
     @RequestMapping(value = "/item/viewItemMessage",  method = RequestMethod.GET)
     public ArrayList<ItemWithImage> viewItemMessage(@RequestParam("shopId") int shopId){
@@ -45,7 +45,14 @@ public class PublicItemController {
         return itemWithImages;
     }
 
-
+    /**
+     * 根据类别查看商品信息，传入categoryId，包含图片，测试成功，各模块复用
+     * */
+    @RequestMapping(value = "/item/viewItemMessageByCategory",  method = RequestMethod.GET)
+    public ArrayList<ItemWithImage> viewItemMessageByCategory(@RequestParam("categoryId") int categoryId){
+        ArrayList<ItemWithImage> itemWithImages = itemDaoImpl.viewItemMessageByCategory(categoryId);
+        return itemWithImages;
+    }
 
     /**
      * 搜索商品信息，测试成功，各模块复用
